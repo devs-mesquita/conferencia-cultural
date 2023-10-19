@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  backend:
+    build: ./
+    ports:
+      - "3017:80"
+    volumes:
+      - ./storage/:/var/www/html/storage:delegated
+    restart: always

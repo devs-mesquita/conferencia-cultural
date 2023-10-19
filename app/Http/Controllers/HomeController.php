@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Inscricao;
 use App\Models\Votacao;
@@ -12,23 +13,24 @@ class HomeController extends Controller
     public function index()
     {
 
-        $qtd_total_delegado = ;
-        $qtd_total_participante = ;
-        $qtd_total_observador = ;
-        $qtd_total_convidado = ;
+        $qtd_total_delegado = DB::table('inscricao')->where('tipo','DELEGADO')->count();
+        $qtd_total_participante = DB::table('inscricao')->where('tipo','PARTICIPANTE')->count();
+        $qtd_total_observador = DB::table('inscricao')->where('tipo','OBSERVADOR')->count();
+        $qtd_total_convidado = DB::table('inscricao')->where('tipo','CONVIDADO')->count();
 
-        $qtd_delegado_apt = ;
+        $qtd_delegado_apt = DB::table('inscricao')->where('tipo','DELEGADO')->where('avaliado',1)->count();
 
-        $qtd_total_inscricoes = ;
+        $qtd_total_inscricoes = DB::table('inscricao')->count();
 
-        $qtd_gt_1 = ;
-        $qtd_gt_2 = ;
-        $qtd_gt_3 = ;
-        $qtd_gt_4 = ;
-        $qtd_gt_5 = ;
-
-
-        return view('pages.home');
+        $qtd_gt_1 = DB::table('inscricao')->where('gt','GT 1. Institucionalização, Marcos Legais e Sistema Nacional de Cultura')->count();
+        $qtd_gt_2 = DB::table('inscricao')->where('gt','GT 2. Democratização do Acesso à Cultura e Participação Social')->count();
+        $qtd_gt_3 = DB::table('inscricao')->where('gt','GT 3. Identidade, Patrimônio, Memória, Direito às Artes e Linguagens Digitais')->count();
+        $qtd_gt_4 = DB::table('inscricao')->where('gt','GT 4. Diversidade Cultural e Transversalidade de Gênero, Raça e Acessibilidade na Política Cultural')->count();
+        $qtd_gt_5 = DB::table('inscricao')->where('gt','GT 5. Economia Criativa, Trabalho, Renda e Sustentabilidade')->count();
+        
+        // dd($qtd_gt_3);
+    
+        return view('pages.home', compact('qtd_total_delegado','qtd_total_participante','qtd_total_observador','qtd_total_convidado','qtd_delegado_apt','qtd_total_inscricoes','qtd_gt_1','qtd_gt_2','qtd_gt_3','qtd_gt_4','qtd_gt_5'));
     }
 
     public function formulario()
@@ -113,14 +115,25 @@ class HomeController extends Controller
             
             return redirect('/form');
         }
-       
+    }
 
-        
-        // $inscricao->foto                    =   $data[''];
-        // $inscricao->comprovante_doccpf      =   $data[''];
-        // $inscricao->comprovante_residencia  =   $data[''];
 
-        
-        // dd(request()->all());
+    public function resultado()
+    {
+
+        $resultado = DB::table('votacao as v')
+                    ->select(
+                        'v.nome_voto',
+                        DB::raw('COUNT(v.nome_voto) as quantidade_votos'),
+                        DB::raw('(SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) as total_delegados'),
+                        DB::raw('COUNT(v.nome_voto) / (SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) * 100 as porcentagem_votos')
+                    )
+                    ->groupBy('v.nome_voto')
+                    ->orderByDesc('quantidade_votos')
+                    ->get();
+
+
+// dd($resultado);
+        return view('pages.votacao.resultado',compact('resultado'));
     }
 }

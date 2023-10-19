@@ -38,7 +38,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('checacpfexiste/{cpf}', [VotacaoController::class, 'checacpfexiste']);
 	Route::get('meuvoto/{cpf}',		   [VotacaoController::class, 'meuvoto'])->middleware(ValidaRotaMeuVoto::class);
-	Route::post('/vota',				   [VotacaoController::class, 'vota'])->name('vota');
+	Route::post('/vota',			   [VotacaoController::class, 'vota'])->name('vota');
+
+	Route::get('/resultado',		   [HomeController::class,  'resultado'])->name('resultado');
 
 	
 });

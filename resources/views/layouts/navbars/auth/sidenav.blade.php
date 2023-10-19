@@ -51,29 +51,40 @@
                                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                     <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                                 </div>
-                                <span class="nav-link-text ms-1">Inscrição</span>
+                                <span class="nav-link-text ms-1">Formulario</span>
                             </a>
                         </li>
 
                     @endif
 
                     @if (Auth::user()->nivel == 'Super-Admin')
-                    {{-- <li class="nav-item">
-                        <a class="nav-link {{ Route::currentRouteName() == 'mensagem.index' ? 'active' : '' }}" href="{{ route('mensagem.index') }}">
-                            <div
-                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                                <i class="fa fa-fw fa-bars text-dark text-sm opacity-10" aria-hidden="true"></i>
-                            </div>
-                            <span class="nav-link-text ms-1">Mensagens</span>
-                        </a>
-                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/form') }}">
                             <div
                                 class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                 <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                             </div>
+                            <span class="nav-link-text ms-1">Formulario</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'inscricao.index' ? 'active' : '' }}" href="{{ route('inscricao.index') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                            </div>
                             <span class="nav-link-text ms-1">Inscrição</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Route::currentRouteName() == 'home.resultado' ? 'active' : '' }}" href="{{ route('resultado') }}">
+                            <div
+                                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="fa fa-fw fa-bars text-dark text-sm opacity-10" aria-hidden="true"></i>
+                            </div>
+                            <span class="nav-link-text ms-1">Resultado</span>
                         </a>
                     </li>
 

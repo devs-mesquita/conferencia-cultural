@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="assets/css/jquery.dataTables.min.css"> 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Dashboard'])
-    <div class="container-fluid px-2">
+    <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12 mb-lg-0 mb-4">

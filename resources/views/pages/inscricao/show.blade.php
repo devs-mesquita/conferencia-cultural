@@ -16,10 +16,9 @@
                         <div class="card-body p-3">
                             <div class="row">
                                 
-                                <img style="
-                                width: 197px;
-                                height: 145px;
-                            " src="{{url($inscricao->foto)}}" alt="">
+                                <img style="width: 197px;height: 145px;" src="{{url('storage',$inscricao->foto)}}" alt="">
+                                {{-- <img style="width: 197px;height: 145px;" src="{{ url(substr($inscricao->foto, 6))}}" alt=""> --}}
+                               
 
                                 <div class="card-body p-3">
                                     <div class="row">
@@ -51,13 +50,13 @@
                                         <br>
                                       <div class="row">
                                         @if (isset($inscricao->doc_identidade))
-                                            <div class="col-12 col-md-12"><span><b>Documento de Identidade: <a href="{{url($inscricao->doc_identidade)}}" target="_blank">Documento de Identidade</a></b></span></div>    
+                                            <div class="col-12 col-md-12"><span><b>Documento de Identidade: <a href="{{url('storage',$inscricao->doc_identidade)}}" target="_blank">Documento de Identidade</a></b></span></div>    
                                         @endif
                                         @if (isset($inscricao->doc_residencia))
-                                            <div class="col-12 col-md-12"><span><b>Comprovante de Residencia:  <a href="{{url($inscricao->doc_residencia)}}">Comprovante de Residencia</a></b></span></div>
+                                            <div class="col-12 col-md-12"><span><b>Comprovante de Residencia:  <a href="{{url('storage',$inscricao->doc_residencia)}}" target="_blank">Comprovante de Residencia</a></b></span></div>
                                         @endif
                                         @if (isset($inscricao->doc_portifolio))
-                                            <div class="col-12 col-md-12"><span><b>Portifolio:  <a href="{{url($inscricao->doc_portifolio)}}">Portifolio</a></b></span></div> 
+                                            <div class="col-12 col-md-12"><span><b>Portifolio:  <a href="{{url('storage',$inscricao->doc_portifolio)}}" target="_blank">Portifolio</a></b></span></div> 
                                         @endif
                                         
                                         

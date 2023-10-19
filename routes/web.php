@@ -12,6 +12,8 @@ use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotacaoController;
 use App\Http\Controllers\InscricaoController;
+
+use App\Http\Middleware\ValidaRotaMeuVoto;
             
 
 Route::group(['middleware' => 'auth'], function () {
@@ -33,6 +35,11 @@ Route::group(['middleware' => 'auth'], function () {
 		'votacao'     => VotacaoController::class,
 		'inscricao'	  => InscricaoController::class,
 	]);
+
+	Route::get('checacpfexiste/{cpf}', [VotacaoController::class, 'checacpfexiste']);
+	Route::get('meuvoto/{cpf}',		   [VotacaoController::class, 'meuvoto'])->middleware(ValidaRotaMeuVoto::class);
+	Route::post('/vota',				   [VotacaoController::class, 'vota'])->name('vota');
+
 	
 });
 

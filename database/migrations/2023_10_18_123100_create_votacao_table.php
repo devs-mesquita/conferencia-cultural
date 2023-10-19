@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->char('cpf',14)           ->unique();
             $table->string('nome_voto');
+            $table->string('id_inscricao');
             
             $table->timestamps();
         });

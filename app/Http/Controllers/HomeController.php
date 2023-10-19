@@ -4,12 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inscricao;
+use App\Models\Votacao;
 use App\Models\Gts;
 
 class HomeController extends Controller
 {
     public function index()
     {
+
+        $qtd_total_delegado = ;
+        $qtd_total_participante = ;
+        $qtd_total_observador = ;
+        $qtd_total_convidado = ;
+
+        $qtd_delegado_apt = ;
+
+        $qtd_total_inscricoes = ;
+
+        $qtd_gt_1 = ;
+        $qtd_gt_2 = ;
+        $qtd_gt_3 = ;
+        $qtd_gt_4 = ;
+        $qtd_gt_5 = ;
+
+
         return view('pages.home');
     }
 
@@ -61,24 +79,24 @@ class HomeController extends Controller
             if(isset($data['comprovante_residencia'])){
                 $comprovante_residencia = request()->file('comprovante_residencia');
                 $up_residencia = $comprovante_residencia->store('public/uploadsComprovanteResidencia');
-                $inscricao->doc_residencia = $up_residencia;
+                $inscricao->doc_residencia =  substr($up_residencia, 6);
             }
            
             if(isset($data['comprovante_doccpf'])){
                 $comprovante_doccpf = request()->file('comprovante_doccpf');
                 $up_doccpf = $comprovante_doccpf->store('public/uploadsDocCpf');
-                $inscricao->doc_identidade = $up_doccpf;
+                $inscricao->doc_identidade = substr($up_doccpf, 6);
             }
 
             if(isset($data['comprovante_portifolio'])){
                 $comprovante_portifolio = request()->file('comprovante_portifolio');
                 $up_portifolio = $comprovante_portifolio->store('public/uploadsPortifolio');
-                $inscricao->doc_portifolio = $up_portifolio;
+                $inscricao->doc_portifolio = substr($up_portifolio, 6);
             }
     
             $imagem = request()->file('foto');
             $up_foto = $imagem->store('public/uploadsFoto');
-            $inscricao->foto = $up_foto;
+            $inscricao->foto = substr($up_foto, 6);
 
             $inscricao->save();
 

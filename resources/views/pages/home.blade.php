@@ -2,7 +2,8 @@
 
 @section('content')
     @include('layouts.navbars.auth.topnav', ['title' => 'Home'])
- 
+    
+    
 
     
 @endsection

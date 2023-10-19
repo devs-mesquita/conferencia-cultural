@@ -14,5 +14,6 @@ class Votacao extends Model
     protected $fillable = [
         'cpf',
         'nome_voto',
+        'id_inscricao',
     ];
 }

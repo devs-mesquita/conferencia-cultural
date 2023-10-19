@@ -33,7 +33,7 @@
                     <div class=" mt-4 mb-2">
                         <div class="row">
                             <div class="text-center rounded-circle img-fluid border-white">
-                                <img src="{{url('storage',$delegado->foto)}}" class="rounded-circle img-fluid border border-1 border-white">
+                                <img src="/storage/{{$delegado->foto}}" class="rounded-circle img-fluid border border-1 border-white">
                             </div>
                             
                         </div>
@@ -66,7 +66,7 @@
             @foreach ($delegados as $delegado)
                 <div class="col-md-3" style="padding: 2% 2% 2% 2%">
                     <div class="card rounded-circle img-fluid border border-2 border-white" style="width: 50%;">
-                        <img src="{{url('storage',$delegado->foto)}}" class="rounded-circle img-fluid border border-2 border-white">
+                        <img src="/storage/{{$delegado->foto}}" class="rounded-circle img-fluid border border-2 border-white">
                     </div>
                     
                     <div class="col-12 text-center"  style="width: 50%;">

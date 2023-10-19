@@ -18,7 +18,7 @@
                                 
                                 <div class="col-md-1" style="width: 5.333333%;">
                                     <div>
-                                        <img src="{{url('storage',$item->foto)}}" class="avatar me-3" alt="image">
+                                        <img src="/storage/{{$item->foto}}" class="avatar me-3" alt="image">
                                         
                                     </div>
                                 </div>

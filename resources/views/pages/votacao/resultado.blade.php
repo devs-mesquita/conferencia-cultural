@@ -14,25 +14,21 @@
 
                         @foreach ($resultado as $item)
                          
-                        
-                        
-                            <div class="row col-md-12 px-3 py-1">
+                            <div class="row col-md-12 px-3 py-1 mb-3">
                                 
                                 <div class="col-md-1" style="width: 5.333333%;">
                                     <div>
-                                        <img src="./img/team-1.jpg" class="avatar me-3" alt="image">
+                                        <img src="{{url('storage',$item->foto)}}" class="avatar me-3" alt="image">
+                                        
                                     </div>
                                 </div>
 
-                                <div class="col-md-10">
+                                <div class="col-md-11">
                                     <div class="progress-wrapper">
                                         <div class="progress-info">
                                           <div class="progress-percentage">
                                             <span class="text-sm font-weight-bold">Quantidade de Votos: {{$item->quantidade_votos}}</span>
                                           </div>
-                                        </div>
-                                        <div class="progress">
-                                          <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: {{$item->quantidade_votos}}%;"></div>
                                         </div>
                                       </div>
                                 </div>

@@ -121,16 +121,29 @@ class HomeController extends Controller
     public function resultado()
     {
 
-        $resultado = DB::table('votacao as v')
+        // $resultado = DB::table('votacao as v')
+        //             ->select(
+        //                 'v.nome_voto',
+        //                 DB::raw('COUNT(v.nome_voto) as quantidade_votos'),
+        //                 DB::raw('(SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) as total_delegados'),
+        //                 DB::raw('COUNT(v.nome_voto) / (SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) * 100 as porcentagem_votos')
+        //             )
+        //             ->groupBy('v.nome_voto')
+        //             ->orderByDesc('quantidade_votos')
+        //             ->get();
+
+
+                    $resultado = DB::table('votacao as v')
                     ->select(
                         'v.nome_voto',
                         DB::raw('COUNT(v.nome_voto) as quantidade_votos'),
-                        DB::raw('(SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) as total_delegados'),
-                        DB::raw('COUNT(v.nome_voto) / (SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) * 100 as porcentagem_votos')
+                        'i.foto'
                     )
-                    ->groupBy('v.nome_voto')
+                    ->leftJoin('inscricao as i', 'v.nome_voto', '=', 'i.nome')
+                    ->groupBy('v.nome_voto', 'i.foto')
                     ->orderByDesc('quantidade_votos')
                     ->get();
+                
 
 
 // dd($resultado);

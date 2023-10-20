@@ -38,8 +38,12 @@
                                                 <select class="form-control" name="nivel" id="nivel" required>
                                                     <option value="">Selecione uma Permissão</option>
                                                     <option value="User">User</option>
+                                                    <option value="Cadastrador">Cadastrador</option>
+                                                    <option value="Avaliador">Avaliador</option>
+                                                    <option value="Votacao">Votacao</option>
                                                     <option value="Admin">Admin</option>
                                                     <option value="Super-Admin">Super-Admin</option>
+                                        
                                                 </select>
                                             </div>
                                         </div>

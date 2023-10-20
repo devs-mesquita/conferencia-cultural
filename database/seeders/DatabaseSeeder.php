@@ -24,36 +24,36 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Gts::firstOrCreate(["nome" => "GT 1. Institucionalização, Marcos Legais e Sistema Nacional de Cultura"], [
                 "nome" => "GT 1. Institucionalização, Marcos Legais e Sistema Nacional de Cultura",
-                "qtd"  => "30",
+                "qtd"  => "20",
                 "color"=> "#ebeb05",
             ]);
 
         \App\Models\Gts::firstOrCreate(["nome" => "GT 2. Democratização do Acesso à Cultura e Participação Social"],
             [
                 "nome" => "GT 2. Democratização do Acesso à Cultura e Participação Social",
-                "qtd"  => "30",
-                "color"=> "#eb0505",                
+                "qtd"  => "20",
+                "color"=> "#0521eb",                
             ]);
 
         \App\Models\Gts::firstOrCreate(["nome" => "GT 3. Identidade, Patrimônio, Memória, Direito às Artes e Linguagens Digitais"],
             [
                 "nome" => "GT 3. Identidade, Patrimônio, Memória, Direito às Artes e Linguagens Digitais",
-                "qtd"  => "30",
-                "color"=> "#eb05cf",                
+                "qtd"  => "20",
+                "color"=> "#05eb2c",                
             ]);
 
         \App\Models\Gts::firstOrCreate(["nome" => "GT 4. Diversidade Cultural e Transversalidade de Gênero, Raça e Acessibilidade na Política Cultural"],
             [
                 "nome" => "GT 4. Diversidade Cultural e Transversalidade de Gênero, Raça e Acessibilidade na Política Cultural",
-                "qtd"  => "30",
-                "color"=> "#0521eb",                
+                "qtd"  => "20",
+                "color"=> "#eb0505",                
             ]);
 
         \App\Models\Gts::firstOrCreate(["nome" => "GT 5. Economia Criativa, Trabalho, Renda e Sustentabilidade"],
             [
                 "nome" => "GT 5. Economia Criativa, Trabalho, Renda e Sustentabilidade",
-                "qtd"  => "30",
-                "color"=> "#05eb2c",                
+                "qtd"  => "20",
+                "color"=> "#eb05cf",                
             ]);
     }
 }

@@ -36,5 +36,6 @@ class Inscricao extends Model
         'doc_portifolio',
         'avaliado',
         'avaliador_id',
+        'observacao',
     ];
 }

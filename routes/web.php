@@ -7,11 +7,12 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\ResetPassword;
+// use App\Http\Controllers\ResetPassword;
 use App\Http\Controllers\ChangePassword;            
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VotacaoController;
 use App\Http\Controllers\InscricaoController;
+use App\Http\Controllers\ExportController;
 
 use App\Http\Middleware\ValidaRotaMeuVoto;
             
@@ -34,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 		'user'		  => UserController::class,
 		'votacao'     => VotacaoController::class,
 		'inscricao'	  => InscricaoController::class,
+		'export'	  => ExportController::class,
 	]);
 
 	Route::get('checacpfexiste/{cpf}', [VotacaoController::class, 'checacpfexiste']);
@@ -42,11 +44,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/resultado',		   [HomeController::class,  'resultado'])->name('resultado');
 
+	Route::get('/confirmados',   [ExportController::class, 'confirmados'])->name('confirmados');
+	Route::get('/recusados',     [ExportController::class, 'recusados'])->name('recusados');
+	Route::get('/votacaofinal',  [ExportController::class, 'votacaofinal'])->name('votacaofinal');
+
+
 	
 });
 
 
 	Route::get('/', [LoginController::class, 'show'])->middleware('guest')->name('login');
 	Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login.perform');
-	Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
-	Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');
+	// Route::get('/reset-password', [ResetPassword::class, 'show'])->middleware('guest')->name('reset-password');
+	// Route::post('/reset-password', [ResetPassword::class, 'send'])->middleware('guest')->name('reset.perform');

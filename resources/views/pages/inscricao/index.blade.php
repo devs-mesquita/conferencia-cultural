@@ -35,7 +35,7 @@
                                                 <td>{{$inscricao->municipio}}</td>
                                                 <td>
                                                     @if ($inscricao->avaliado == 0)
-                                                        <h6 style="color: grey">NÃO AVALIADO</h6> 
+                                                        <h6 style="color: grey"><b hidden>a</b>NÃO AVALIADO</h6> 
                                                     @elseif($inscricao->avaliado == 1)
                                                         <h6 style="color: green">CONFIRMADO</h6> 
                                                         
@@ -84,7 +84,8 @@
 			"decimal": ",",
 			"thousands": "."
         },
-        stateSave: true,
+        order: [[3, 'asc']],
+        // stateSave: true,
         stateDuration: -1,
         responsive: true,
     })

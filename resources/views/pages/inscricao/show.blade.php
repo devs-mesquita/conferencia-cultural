@@ -81,6 +81,15 @@
                                                         </label>
                                                     </div>
                                                 </div>
+
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                          <span class="input-group-text">Observação</span>
+                                                          <textarea class="form-control" name="observacao" id="observacao" aria-label="With textarea"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
         
                                             <div class="pb-0 p-2">
@@ -101,6 +110,9 @@
                                     </div>
                                 @endif
                                 
+                                @if ($inscricao->observacao != null)
+                                    {{$inscricao->observacao}}
+                                @endif
 
                             </div>
                         </div>

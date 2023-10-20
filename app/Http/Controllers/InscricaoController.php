@@ -31,6 +31,7 @@ class InscricaoController extends Controller
         $inscricao = Inscricao::find($id);
 
         $inscricao->avaliado = $request->avaliado;
+        $inscricao->observacao = $request->observacao;
         $inscricao->avaliador_id = Auth::user()->id;
 
         $inscricao->save();

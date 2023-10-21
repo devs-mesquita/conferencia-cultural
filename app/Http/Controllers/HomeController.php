@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Inscricao;
 use App\Models\Votacao;
 use App\Models\Gts;
+use carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -38,7 +39,11 @@ class HomeController extends Controller
 
         $gts = Gts::all();
 
-        return view('pages.formulario.create', compact('gts'));
+        $hora_atual = Carbon::now('America/Sao_Paulo')->format('h:i');
+
+        // dd($hora_atual);
+
+        return view('pages.formulario.create', compact('gts','hora_atual'));
     }
 
     public function formsave(Request $request)
@@ -77,6 +82,21 @@ class HomeController extends Controller
             $inscricao->pinterest   =   $data['pinterest'];
             $inscricao->gt          =   $id_valor[1];
 
+            if($data['tipo'] == "DELEGADO" || $data['tipo'] == "PARTICIPANTE"){
+                $gt = Gts::find($id_valor[0]);
+                
+                if($gt->qtd <= 0){
+                    return back()->withInput()->with('error', 'Esse GT excedeu o numero de participantes.'); 
+                }
+
+                $dimunui = $gt->qtd - 1;
+                $gt->qtd = $dimunui;
+
+               
+    
+                $gt->save();
+            }
+
 
             if(isset($data['comprovante_residencia'])){
                 $comprovante_residencia = request()->file('comprovante_residencia');
@@ -102,15 +122,7 @@ class HomeController extends Controller
 
             $inscricao->save();
 
-            if($data['tipo'] == "DELEGADO" || $data['tipo'] == "PARTICIPANTE"){
-                $gt = Gts::find($id_valor[0]);
-                
-                $dimunui = $gt->qtd - 1;
-    
-                $gt->qtd = $dimunui;
-    
-                $gt->save();
-            }
+            
     
             
             return redirect('/form');
@@ -121,18 +133,7 @@ class HomeController extends Controller
     public function resultado()
     {
 
-        // $resultado = DB::table('votacao as v')
-        //             ->select(
-        //                 'v.nome_voto',
-        //                 DB::raw('COUNT(v.nome_voto) as quantidade_votos'),
-        //                 DB::raw('(SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) as total_delegados'),
-        //                 DB::raw('COUNT(v.nome_voto) / (SELECT COUNT(*) FROM inscricao WHERE tipo = "DELEGADO" AND avaliado = 1) * 100 as porcentagem_votos')
-        //             )
-        //             ->groupBy('v.nome_voto')
-        //             ->orderByDesc('quantidade_votos')
-        //             ->get();
-
-
+    
                     $resultado = DB::table('votacao as v')
                     ->select(
                         'v.nome_voto',
@@ -149,4 +150,21 @@ class HomeController extends Controller
 // dd($resultado);
         return view('pages.votacao.resultado',compact('resultado'));
     }
+
+    public function resultrefresh()
+    {
+        $resultado = DB::table('votacao as v')
+        ->select(
+            'v.nome_voto',
+            DB::raw('COUNT(v.nome_voto) as quantidade_votos'),
+            'i.foto'
+        )
+        ->leftJoin('inscricao as i', 'v.nome_voto', '=', 'i.nome')
+        ->groupBy('v.nome_voto', 'i.foto')
+        ->orderByDesc('quantidade_votos')
+        ->get();
+
+        return view('pages.votacao.resultrefresh', compact('resultado'));
+    }
 }
+

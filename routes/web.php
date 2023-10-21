@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/vota',			   [VotacaoController::class, 'vota'])->name('vota');
 
 	Route::get('/resultado',		   [HomeController::class,  'resultado'])->name('resultado');
+	Route::get('/resultrefresh',	   [HomeController::class,	'resultrefresh'])->name('resultrefresh');
 
 	Route::get('/confirmados',   [ExportController::class, 'confirmados'])->name('confirmados');
 	Route::get('/recusados',     [ExportController::class, 'recusados'])->name('recusados');

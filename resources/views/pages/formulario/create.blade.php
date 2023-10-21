@@ -54,33 +54,33 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Nome</label>
-                                <input class="form-control" type="text" name="nome" 
+                                <input class="form-control" value="{{ old('nome') }}" type="text" name="nome" 
                                 required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Email</label>
-                                <input class="form-control" type="email" name="email" required>
+                                <input class="form-control" value="{{ old('email') }}" type="email" name="email" required>
                                 {{-- <p class="text-xs">You cannot change the email in the demo version</p> --}}
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Data de Nascimento</label>
-                                <input class="form-control" type="date" name="nascimento" required>
+                                <input class="form-control" value="{{ old('nascimento') }}" type="date" name="nascimento" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* CPF</label>
-                                <input class="form-control" type="text" name="cpf" id="cpf" required>
+                                <input class="form-control" value="{{ old('cpf') }}" type="text" name="cpf" id="cpf" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Telefone</label>
-                                <input class="form-control" type="text" name="telefone" id="telefone">
+                                <input class="form-control" value="{{ old('telefone') }}" type="text" name="telefone" id="telefone">
                             </div>
                         </div>
                     </div>
@@ -91,37 +91,37 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* CEP</label>
-                                <input class="form-control" type="text" name="cep" id="cep" onblur="pesquisacep(this.value);" required>
+                                <input class="form-control" value="{{ old('cep') }}" type="text" name="cep" id="cep" onblur="pesquisacep(this.value);" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Rua</label>
-                                <input class="form-control" type="text" name="rua" id="rua" required>
+                                <input class="form-control" value="{{ old('rua') }}" type="text" name="rua" id="rua" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Municipio</label>
-                                <input class="form-control" type="text" name="municipio" id="municipio" required>
+                                <input class="form-control" value="{{ old('municipio') }}" type="text" name="municipio" id="municipio" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">* Bairro</label>
-                                <input class="form-control" type="text" name="bairro" id="bairro" required>
+                                <input class="form-control" value="{{ old('bairro') }}" type="text" name="bairro" id="bairro" required>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Numero</label>
-                                <input class="form-control" type="text" name="numero" name="numero" required>
+                                <input class="form-control" value="{{ old('numero') }}" type="text" name="numero" name="numero" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Complemento</label>
-                                <input class="form-control" type="text" name="complemento">
+                                <input class="form-control" value="{{ old('complemento') }}" type="text" name="complemento">
                             </div>
                         </div>
                         
@@ -132,6 +132,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="example-select-input" >* Grupo de Trabalho</label>
+                                <label for="example-select-input" >* CONFIRA A QUANTIDADE DE VAGAS ANTES DE ENVIAR O CADASTRO</label>
                                 <select class="form-select" name="gt" id="gt" onchange="selecionarGT()" required>
                                     <option value=""></option>
                                     @foreach ($gts as $gt)
@@ -144,17 +145,20 @@
                  
 
                     <h5 class="text-uppercase">opção de participação</h5>
+
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="example-text-input" class="form-control-label">
-                                <input type="radio" name="tipo" value="DELEGADO" required> <b>Candidato a Delegado</b>
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="example-text-input" class="form-control-label">
-                                <input type="radio" name="tipo" value="PARTICIPANTE"> <b>Participante</b>
-                            </label>
-                        </div>
+                        @if ($hora_atual < '09:00')
+                            <div class="col-md-3">
+                                <label for="example-text-input" class="form-control-label">
+                                    <input type="radio" name="tipo"  value="DELEGADO" required> <b>Candidato a Delegado</b>
+                                </label>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="example-text-input" class="form-control-label">
+                                    <input type="radio" name="tipo" value="PARTICIPANTE"> <b>Participante</b>
+                                </label>
+                            </div>
+                        @endif
                         <div class="col-md-3">
                             <label for="example-text-input" class="form-control-label">
                                 <input type="radio" name="tipo" value="CONVIDADO"> <b>Convidado</b>
@@ -166,6 +170,7 @@
                             </label>
                         </div>
                     </div>
+
                     <br>
                     <h5 class="text-uppercase">redes sociais</h5>
 
@@ -173,32 +178,32 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Youtube</label>
-                                <input class="form-control" type="text" name="youtube">
+                                <input class="form-control" value="{{ old('youtube') }}" type="text" name="youtube">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Instagram</label>
-                                <input class="form-control" type="text" name="instagram">
+                                <input class="form-control" value="{{ old('instagram') }}" type="text" name="instagram">
                                 {{-- <p class="text-xs">You cannot change the email in the demo version</p> --}}
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Twitter</label>
-                                <input class="form-control" type="text" name="twitter">
+                                <input class="form-control" value="{{ old('twitter') }}" type="text" name="twitter">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Linkedin</label>
-                                <input class="form-control" type="text" name="linkedin">
+                                <input class="form-control" value="{{ old('linkedin') }}" type="text" name="linkedin">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">Pinterest</label>
-                                <input class="form-control" type="text" name="pinterest">
+                                <input class="form-control" value="{{ old('pinterest') }}" type="text" name="pinterest">
                             </div>
                         </div>
                     </div>
@@ -232,13 +237,13 @@
                                 <div class="d-flex">
                                     <div class="form-group col-md-6 col-sm-12 col-xs-12">
                                         <div class="col-12 mt-3">
-                                            <label class="form-label fw-normal">Documento com Foto e CPF:
+                                            <label class="form-label fw-normal">Documento de Identificação com Foto e CPF:
                                             </label>
                                             <p class="mb-3">
                                                  <label for="comprovante_doccpf">
                                                       <a class="btn btn-primary text-light" type="button" role="button" aria-disabled="false">Adicionar Arquivo</a>
                                                  </label>
-                                                 <input id="comprovante_doccpf" class="form-control" name="comprovante_doccpf" type="file"  style="visibility: hidden; position: absolute;" accept=".pdf,.jpeg,.png,.jpg">
+                                                 <input value="{{ old('comprovante_doccpf') }}" id="comprovante_doccpf" class="form-control" name="comprovante_doccpf" type="file"  style="visibility: hidden; position: absolute;" accept=".pdf,.jpeg,.png,.jpg">
                                             </p>
                                             <div id="erro-doccpf" class="alert alert-danger mb-2" style="display: none;">
                                                 <p class="m-0">Tipo de arquivo inválido, insira pdf, jpg, jpeg ou png</p>
@@ -261,7 +266,7 @@
                                                  <label for="comprovante_residencia">
                                                       <a class="btn btn-primary text-light" type="button" role="button" aria-disabled="false">Adicionar Arquivo</a>
                                                  </label>
-                                                 <input id="comprovante_residencia" class="form-control" name="comprovante_residencia" type="file"  style="visibility: hidden; position: absolute;" accept=".pdf,.jpeg,.png,.jpg">
+                                                 <input value="{{ old('comprovante_residencia') }}" id="comprovante_residencia" class="form-control" name="comprovante_residencia" type="file"  style="visibility: hidden; position: absolute;" accept=".pdf,.jpeg,.png,.jpg">
                                             </p>
                                             <div id="erro-residencia" class="alert alert-danger mb-2" style="display: none;">
                                                 <p class="m-0">Tipo de arquivo inválido, insira pdf, jpg, jpeg ou png</p>
@@ -287,7 +292,7 @@
                                                  <label for="comprovante_portifolio">
                                                       <a class="btn btn-primary text-light" type="button" role="button" aria-disabled="false">Adicionar Arquivo</a>
                                                  </label>
-                                                 <input id="comprovante_portifolio" class="form-control" name="comprovante_portifolio" type="file"  style="visibility: hidden; position: absolute;" accept=".pdf,.jpeg,.png,.jpg">
+                                                 <input value="{{ old('comprovante_portifolio') }}" id="comprovante_portifolio" class="form-control" name="comprovante_portifolio" type="file"  style="visibility: hidden; position: absolute;" accept=".pdf,.jpeg,.png,.jpg">
                                             </p>
                                             <div id="erro-portifolio" class="alert alert-danger mb-2" style="display: none;">
                                                 <p class="m-0">Tipo de arquivo inválido, insira pdf, jpg, jpeg ou png</p>

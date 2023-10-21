@@ -147,7 +147,7 @@
                     <h5 class="text-uppercase">opção de participação</h5>
 
                     <div class="row">
-                        @if ($hora_atual < '09:00')
+                        @if ($hora_atual < '10:15')
                             <div class="col-md-3">
                                 <label for="example-text-input" class="form-control-label">
                                     <input type="radio" name="tipo"  value="DELEGADO" required> <b>Candidato a Delegado</b>

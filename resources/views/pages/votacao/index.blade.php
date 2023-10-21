@@ -43,7 +43,7 @@
                         <div class="col-12 text-center">
                             <div class="form-group">
                                 <label for="example-text-input" class="form-control-label">CPF</label>
-                                <input class="form-control" type="text" id="cpf" name="cpf" required>
+                                <input class="form-control" type="tel" id="cpf" name="cpf" required>
                             </div>
                             <button id="procura" class="btn bg-gradient-success mb-3">Entrar</button>
                         </div>

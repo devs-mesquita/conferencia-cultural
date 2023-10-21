@@ -21,7 +21,7 @@ class VotacaoController extends Controller
     {
 
         // 'OBSERVADOR','PARTICIPANTE','DELEGADO','CONVIDADO'
-        $checaexiste = Inscricao::where('tipo','!=', 'OBSERVADOR')->where('cpf',$cpf)->get();
+        $checaexiste = Inscricao::where('tipo','!=', 'OBSERVADOR')->where('tipo','!=','CONVIDADO')->where('cpf',$cpf)->get();
 
         if(count($checaexiste) > 0){
             $checavotoexiste = Votacao::where('cpf',$cpf)->get();

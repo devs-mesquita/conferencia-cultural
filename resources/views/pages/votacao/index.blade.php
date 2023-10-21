@@ -78,7 +78,7 @@
                         }, "3000");
                         // console.log('Ja votou');
                     } else if (data.resultado == 'nao_registrado') {
-                        document.getElementById('alert').innerHTML = "<div id='sera' class='alert alert-warning alert-dismissible fade show' role='alert'><span class='alert-icon'></span><span class='alert-text'><strong>Alerta! </strong> CPF NÃO ENCONTRADO EM NOSSOS REGISTROS</span></div>";
+                        document.getElementById('alert').innerHTML = "<div id='sera' class='alert alert-warning alert-dismissible fade show' role='alert'><span class='alert-icon'></span><span class='alert-text'><strong>Alerta! </strong> VOCÊ NÃO ESTA APTO A VOTAR</span></div>";
                         const a = document.getElementById('sera');
                         setTimeout(() => {
                             a.remove();

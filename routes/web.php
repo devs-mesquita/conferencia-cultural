@@ -45,9 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/resultado',		   [HomeController::class,  'resultado'])->name('resultado');
 	Route::get('/resultrefresh',	   [HomeController::class,	'resultrefresh'])->name('resultrefresh');
 
-	Route::get('/confirmados',   [ExportController::class, 'confirmados'])->name('confirmados');
-	Route::get('/recusados',     [ExportController::class, 'recusados'])->name('recusados');
-	Route::get('/votacaofinal',  [ExportController::class, 'votacaofinal'])->name('votacaofinal');
+	Route::get('/confirmados',   	[ExportController::class, 'confirmados'])->name('confirmados');
+	Route::get('/recusados',     	[ExportController::class, 'recusados'])->name('recusados');
+	Route::get('/votacaofinal',  	[ExportController::class, 'votacaofinal'])->name('votacaofinal');
+	Route::get('/todasinscricoes',  [ExportController::class, 'todasinscricoes'])->name('todasinscricoes');
 
 
 	

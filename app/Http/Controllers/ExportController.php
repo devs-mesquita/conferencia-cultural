@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Exports\ConfirmadosExport;
 use App\Exports\RecusadosExport;
 use App\Exports\VotacaoFinalExport;
+use App\Exports\TotalInscricoesExport;
 
 use Excel;
 
@@ -34,5 +35,10 @@ class ExportController extends Controller
    public function votacaofinal()
    {
     return Excel::download(new VotacaoFinalExport, 'final.xlsx');
+   }
+
+   public function todasinscricoes()
+   {
+    return Excel::download(new TotalInscricoesExport, 'total.xlsx');
    }
 }
